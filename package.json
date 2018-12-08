@@ -9,7 +9,9 @@
     "watch": "node-dev --respawn lib/index.js",
     "test": "nyc --check coverage --lines 98 --functions 90 --branches 98 mocha test",
     "lint": "eslint *.js lib test",
-    "docs": "jsdoc -p README.md *.js lib/** -d docs"
+    "docs": "jsdoc -p README.md *.js lib/** -d docs",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -32,11 +34,12 @@
   },
   "homepage": "https://github.com/sensebox/ttn-osem-integration#readme",
   "dependencies": {
-    "body-parser": "^1.17.2",
+    "body-parser": "^1.18.2",
     "bunyan": "^1.8.12",
-    "express": "^4.15.4",
+    "express": "^4.16.0",
     "lora-serialization": "^3.0.1",
-    "openSenseMapAPI": "git://github.com/sensebox/openSenseMap-API.git#7f786e1"
+    "openSenseMapAPI": "git://github.com/sensebox/openSenseMap-API.git#7f786e1",
+    "snyk": "^1.116.2"
   },
   "devDependencies": {
     "chai": "^4.1.1",
@@ -48,5 +51,6 @@
     "mocha": "^3.5.0",
     "node-dev": "^3.1.3",
     "nyc": "^11.1.0"
-  }
+  },
+  "snyk": true
 }

@@ -1,0 +1,34 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.13.1
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:debug:20170905':
+    - openSenseMapAPI > bcrypt > node-pre-gyp > tar-pack > debug:
+        patched: '2018-12-08T07:38:36.080Z'
+  'npm:hoek:20180212':
+    - openSenseMapAPI > request > hawk > cryptiles > boom > hoek:
+        patched: '2018-12-08T07:38:36.080Z'
+    - openSenseMapAPI > request > hawk > boom > hoek:
+        patched: '2018-12-08T07:38:36.080Z'
+    - openSenseMapAPI > request > hawk > sntp > hoek:
+        patched: '2018-12-08T07:38:36.080Z'
+    - openSenseMapAPI > honeybadger > request > hawk > hoek:
+        patched: '2018-12-08T07:38:36.080Z'
+    - openSenseMapAPI > honeybadger > request > hawk > sntp > hoek:
+        patched: '2018-12-08T07:38:36.080Z'
+    - openSenseMapAPI > request > hawk > hoek:
+        patched: '2018-12-08T07:38:36.080Z'
+    - openSenseMapAPI > honeybadger > request > hawk > boom > hoek:
+        patched: '2018-12-08T07:38:36.080Z'
+    - openSenseMapAPI > honeybadger > request > hawk > cryptiles > boom > hoek:
+        patched: '2018-12-08T07:38:36.080Z'
+  'npm:moment:20170905':
+    - openSenseMapAPI > moment:
+        patched: '2018-12-08T07:38:36.080Z'
+  'npm:ms:20170412':
+    - openSenseMapAPI > bcrypt > node-pre-gyp > tar-pack > debug > ms:
+        patched: '2018-12-08T07:38:36.080Z'
+  'npm:tunnel-agent:20170305':
+    - openSenseMapAPI > honeybadger > request > tunnel-agent:
+        patched: '2018-12-08T07:38:36.080Z'
