@@ -1,17 +1,22 @@
 version: "2"
 services:
   ttn-osem-integration:
-    build: .
+    build: 
+      context: ..
+      dockerfile: ./test/Dockerfile
+    volumes:
+      - ./:/usr/src/app/tests
+      - ../package.json:/usr/src/app/package.json
     ports:
       - 3000:3000
     environment:
-      - NODE_CONFIG: |-
+      NODE_CONFIG: |-
         {
           "port": 3000,
           "loglevel":"trace",
           "openSenseMap-API-models": {
             "db": {
-              "mongo_uri":"mongodb://db/ttn-integration"
+              "mongo_uri":"mongodb://db/ttn-osem-tests"
             }
           }
         }
@@ -25,6 +30,6 @@ services:
     ports:
       - 27017:27017
     environment:
-      - OSEM_dbconnectionstring=mongodb://db/ttn-integration
+      - OSEM_dbconnectionstring=mongodb://db/ttn-osem-tests
     #command: --auth
 

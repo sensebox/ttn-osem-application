@@ -7,6 +7,7 @@
     "start": "node lib/index.js | bunyan -o short",
     "start:rawlogs": "node lib/index.js",
     "watch": "node-dev --respawn lib/index.js",
+    "tests": "./run_tests.sh",
     "test": "nyc --check coverage --lines 98 --functions 90 --branches 98 mocha test",
     "lint": "eslint *.js lib test",
     "docs": "jsdoc -p README.md *.js lib/** -d docs"
@@ -32,11 +33,12 @@
   },
   "homepage": "https://github.com/sensebox/ttn-osem-integration#readme",
   "dependencies": {
+    "@sensebox/opensensemap-api-models": "^0.0.15",
     "body-parser": "^1.17.2",
     "bunyan": "^1.8.12",
+    "config": "^2.0.1",
     "express": "^4.15.4",
-    "lora-serialization": "^3.0.1",
-    "openSenseMapAPI": "git://github.com/sensebox/openSenseMap-API.git#7f786e1"
+    "lora-serialization": "^3.0.1"
   },
   "devDependencies": {
     "chai": "^4.1.1",

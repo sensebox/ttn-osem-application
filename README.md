@@ -30,8 +30,8 @@ ttn: {
 
 ### decoding profiles
 #### `sensebox/home`
-Decodes messages which contain 5 measurements of all sensors of the senseBox:home.
-The correct sensorIds are matched via their titles. Decoding fits the [dragino senseBox:home sketch](https://github.com/sensebox/random-sketches/blob/master/lora/dragino/dragino.ino).
+Decodes messages of all sensors of the senseBox:home. Takes registered sensors into account and decodes payload accordingly. Therefore, the senseBox:home lora sketch should not be changed except TTN IDs.
+The correct sensorIds are matched via their titles. Decoding fits the [senseBox:home lora sketch](https://github.com/sensebox/node-sketch-templater/blob/master/templates/homev2_lora.tpl).
 
 #### `lora-serialization`
 Allows decoding of messages that were encoded with the [`lora-serialization` library](https://github.com/thesolarnomad/lora-serialization).
@@ -105,22 +105,26 @@ npm start
 - `mongodb >= 3.x`
 
 ### configuration
-See [`config.js`](config.js). All options may be overridden by environment
-variables.
-Currently, the connection string to mongodb must be configured through the
-environment variables of the [openSenseMap-API config](https://github.com/sensebox/openSenseMap-API/blob/master/config/index.js):
-
-```bash
-OSEM_dbuser=user
-OSEM_dbuserpass=pass
-# ...or just:
-OSEM_dbconnectionstring=mongodb://localhost/OSeM-api
+Configuration is handled by [node-config]. See [config/default.json](config/default.json).
+```json
+{
+  "port": 3000,
+  "loglevel": "trace",
+  "openSenseMap-API-models": {
+    "db": {
+      // See example config json of @sensebox/opensensemap-api-models
+      "mongo_uri"
+    }
+  }
+}
 ```
 
 ## development
 - JSDoc documentation can be found under `./docs/` or [sensebox.github.io/ttn-osem-integration](https://sensebox.github.io/ttn-osem-integration). To update it, run `npm run docs`.
-- To run the test suite, either run `export OSEM_dbconnectionstring=....; npm run test` while the application is running, or `./run_tests.sh` (requires bash & docker).
+- To run the test suite, either run `npm run test` while the application is running, or `./run_tests.sh` (requires bash & docker).
 - Please follow the existing code style. Double check by running `npm run lint`.
 
 ## license
 MIT, see [`LICENSE`](LICENSE)
+
+[node-config]: https://github.com/lorenwest/node-config

@@ -1,19 +1,18 @@
 #!/bin/bash
 
-export OSEM_dbconnectionstring=mongodb://localhost/ttn-osem-tests
-container=mongo-ttn-osem
-
-function cleanup {
-  kill -2 $node_pid
-  docker stop "$container"
+function runComposeCommand() {
+  docker-compose -p ttnosemtest -f ./test/docker-compose.yml "$@"
 }
 
-docker run -d -p 27017:27017 --name "$container" mongo || docker start "$container"
+runComposeCommand up --build -d ttn-osem-integration
 
-npm start &
-node_pid=$!
+# Allow the dust to settle
+sleep 5
+
+function cleanup {
+  runComposeCommand down -v
+}
 
 trap cleanup EXIT 
 
-npm run test -s
-
+runComposeCommand exec ttn-osem-integration npm test
